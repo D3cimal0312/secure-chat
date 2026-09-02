@@ -16,6 +16,26 @@
         {
             "folderPath": "secure-chat\\lib\\crypto\\",
             "color": "foldercolorizer.color_ff0000"
+        },
+        {
+            "filePath": "secure-chat\\todo.txt",
+            "color": "foldercolorizer.color_d7ff87"
+        },
+        {
+            "folderPath": "secure-chat\\app\\api\\auth\\[...nextauth]\\",
+            "color": "foldercolorizer.color_005f5f"
+        },
+        {
+            "folderPath": "secure-chat\\app\\api\\auth\\register\\",
+            "color": "foldercolorizer.color_00d7af"
+        },
+        {
+            "folderPath": "secure-chat\\app\\api\\rooms\\",
+            "color": "foldercolorizer.color_5f875f"
+        },
+        {
+            "folderPath": "secure-chat\\app\\api\\users\\[userId]\\publickey\\",
+            "color": "foldercolorizer.color_d7d75f"
         }
     ]
 }
