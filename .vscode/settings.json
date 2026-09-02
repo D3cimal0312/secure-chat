@@ -1,0 +1,17 @@
+{
+    "folder-color.pathColors": [
+        {
+            "folderPath": "secure-chat\\app\\",
+            "color": "foldercolorizer.color_00ff00",
+            "badge": "MR"
+        },
+        {
+            "folderPath": "secure-chat\\lib\\",
+            "color": "foldercolorizer.color_0087d7"
+        },
+        {
+            "folderPath": "secure-chat\\lib\\db\\",
+            "badge": "SS"
+        }
+    ]
+}
