@@ -12,6 +12,10 @@
         {
             "folderPath": "secure-chat\\lib\\db\\",
             "badge": "SS"
+        },
+        {
+            "folderPath": "secure-chat\\lib\\crypto\\",
+            "color": "foldercolorizer.color_ff0000"
         }
     ]
 }

@@ -25,8 +25,8 @@ const RoomSchema = new mongoose.Schema<IRoom>({
         type: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
         required: true,
         validate: {
-            validator: (v: mongoose.Types.ObjectId[]) => v.length >= 3,
-            message: "Room must have at least 3 participants",
+            validator: (v: mongoose.Types.ObjectId[]) => v.length >= 2,
+            message: "Room must have at least 2 participants",
         },
     },
     createdBy: {

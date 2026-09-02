@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 import mongoose from "mongoose";
 import { IUser } from "./User";
-import { IRoom } from "./Rooms";
+import { IRoom } from "./Room";
 
 // 
 export interface IMessage {
@@ -40,6 +40,7 @@ const MessageSchema = new mongoose.Schema<IMessage>(
     },
     { timestamps: true }
 )
+MessageSchema.index({ room: 1, createdAt: 1 })
 
 const Message = models.Message || model<IMessage>("Message", MessageSchema);
 
