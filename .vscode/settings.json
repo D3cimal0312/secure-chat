@@ -36,6 +36,10 @@
         {
             "folderPath": "secure-chat\\app\\api\\users\\[userId]\\publickey\\",
             "color": "foldercolorizer.color_d7d75f"
+        },
+        {
+            "filePath": "secure-chat\\proxy.ts",
+            "color": "foldercolorizer.color_d70000"
         }
     ]
 }

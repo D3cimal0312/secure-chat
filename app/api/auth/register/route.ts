@@ -4,6 +4,8 @@ import connectDB from "@/lib/db/mongoose";
 import User from "@/lib/db/models/User";
 
 export async function POST(req: NextRequest) {
+
+    try{ 
     const { username, email, password } = await req.json();
 
     if (!username || !email || !password) {
@@ -37,4 +39,9 @@ export async function POST(req: NextRequest) {
         { id: user._id, username: user.username, email: user.email },
         { status: 201 }
     );
+}
+catch(err){
+    console.error(err);
+    return NextResponse.json({error:"Internal server error"},{status:500});
+}
 }
