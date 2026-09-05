@@ -3,6 +3,7 @@ import {getServerSession} from "next-auth";
 import {authOptions} from "@/lib/auth";
 import connectDB from "@/lib/db/mongoose";
 import Room from "@/lib/db/models/Room";
+import User from "@/lib/db/models/User";
 
 // getting all rooms that participents is a memeber of
 
@@ -52,11 +53,24 @@ export async function POST(req:NextRequest)
     }
     await connectDB();
 
+    // validate that the requestd participants ic actually exist
+    const existingCount = await User.countDocuments({
+        _id:{$in:allParticipants},
+    });
+    if(existingCount !== allParticipants.length){
+        return NextResponse.json(
+            {error:"One or more participants do not exisits"},
+        {status:400}
+        );
+    }
+
     const room =await Room.create({
         name,
         participants,
         createdBy:session.user.id
-    })
+    });
+
+    return NextResponse.json({room},{status:201});
         
     }
     catch(error){

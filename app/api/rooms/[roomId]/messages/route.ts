@@ -4,6 +4,7 @@ import {authOptions} from "@/lib/auth";
 import connectDB from "@/lib/db/mongoose";
 import Room from "@/lib/db/models/Room";
 import Message from "@/lib/db/models/Message";
+import {Types} from 'mongoose';
 
 // get messages from room
 export async function GET(
@@ -13,7 +14,7 @@ export async function GET(
     try{
         const session=await getServerSession(authOptions);
         if(!session){
-            return NextResponse.json({error:"Unauthorized"},{status:400});
+            return NextResponse.json({error:"Unauthorized"},{status:401});
 
         }
         const {roomId}=await params;
@@ -31,7 +32,11 @@ export async function GET(
             const query:Record<string,unknown>= {room:roomId};
 
             if(before){
-                query._id={ $lt:before}
+                if(!Types.ObjectId.isValid(before)){
+                    return NextResponse.json({error:"invalid "},{status:400});
+                }
+
+                query._id={ $lt:new Types.ObjectId(before)};
             }
 
             const messages=await Message.find(query)
@@ -86,6 +91,8 @@ export async function POST(req:NextRequest,
                 ciphertext,
                 iv,
             })
+
+            await message.save();
 
             await message.populate("sender","username");
 
