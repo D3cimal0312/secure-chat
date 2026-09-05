@@ -3,7 +3,8 @@ export interface ChatMessage {
   id: string;
   roomId: string;
   senderId: string;
-  text: string;
+  ciphertext:string; 
+  iv:string; 
   createdAt: string; 
 }
 
