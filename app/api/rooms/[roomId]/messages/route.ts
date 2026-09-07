@@ -80,7 +80,6 @@ export async function POST(req: NextRequest,
             return NextResponse.json({ error: "Room not found or unauthorized access" }, { status: 404 });
         }
 
-        const { ciphertext, iv } = await req.json();
 
         const { body, envelopes } = await req.json();
 

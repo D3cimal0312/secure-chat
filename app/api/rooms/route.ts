@@ -66,7 +66,7 @@ export async function POST(req:NextRequest)
 
     const room =await Room.create({
         name,
-        participants,
+        participants: allParticipants,
         createdBy:session.user.id
     });
 
