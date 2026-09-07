@@ -3,13 +3,21 @@ import mongoose from "mongoose";
 import { IUser } from "./User";
 import { IRoom } from "./Room";
 
-// 
+export interface IEnvelope {
+    recipientId: mongoose.Types.ObjectId;
+    keyCiphertext: string;
+    keyIv: string;
+}
+
 export interface IMessage {
     _id: mongoose.Types.ObjectId;
     room: mongoose.Types.ObjectId | IRoom;
     sender: mongoose.Types.ObjectId | IUser;
-    ciphertext: string;
-    iv: string;
+    body: {
+        ciphertext: string;
+        iv: string;
+    };
+    envelopes: IEnvelope[];
     createdAt: Date;
     updatedAt: Date;
 }
@@ -29,14 +37,33 @@ const MessageSchema = new mongoose.Schema<IMessage>(
             ref: "User",
             required: true,
         },
-        ciphertext: {
-            type: String,
-            required: true,
+          body: {
+            ciphertext: {
+                type: String,
+                required: true,
+            },
+            iv: {
+                type: String,
+                required: true,
+            },
         },
-        iv: {
-            type: String,
-            required: true,
-        },
+        envelopes: [
+            {
+                recipientId: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "User",
+                    required: true,
+                },
+                keyCiphertext: {
+                    type: String,
+                    required: true,
+                },
+                keyIv: {
+                    type: String,
+                    required: true,
+                },
+            },
+        ],
     },
     { timestamps: true }
 )

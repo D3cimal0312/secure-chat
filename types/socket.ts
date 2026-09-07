@@ -1,11 +1,20 @@
 
+export interface Envelope {
+  recipientId: string;
+  keyCiphertext: string;
+  keyIv: string;
+}
+
 export interface ChatMessage {
   id: string;
   roomId: string;
   senderId: string;
-  ciphertext:string; 
-  iv:string; 
-  createdAt: string; 
+  body: {
+    ciphertext: string;
+    iv: string;
+  };
+  envelopes: Envelope[];
+  createdAt: string;
 }
 
 export interface ClientToServerEvents {
